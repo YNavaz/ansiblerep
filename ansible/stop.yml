@@ -1,0 +1,9 @@
+---
+- name: Stop Nginx Service
+  hosts: webapp
+  become: true
+  tasks:
+    - name: Ensure Nginx is stopped
+      systemd:
+        name: nginx
+        state: stopped

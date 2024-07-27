@@ -1,0 +1,9 @@
+---
+- name: Install Nginx Playbook
+  hosts: webapp
+  become: true
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present

@@ -1,0 +1,33 @@
+---
+- name: Deploy Python Application
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure Python is installed
+      apt:
+        name: python3
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Update apt package list
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Install pip
+      apt:
+        name: python3-pip
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Python is installed
+      yum:
+        name: python3
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install pip
+      yum:
+        name: python3-pip
+        state: present
+      when: ansible_os_family == "RedHat"
